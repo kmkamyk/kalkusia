@@ -1,6 +1,6 @@
 # Kalkusia
 
-## Kalkulator proporcji kawy do wody dla metodach alternatywnych (Areopress, drip V60, chemex, phin, kalita...)
+## Kalkulator proporcji kawy do wody dla metodach alternatywnych (Aeropress, drip V60, chemex, phin, kalita...)
 
 To prosta aplikacja internetowa, która umożliwia obliczenie ilości kawy potrzebnej do przygotowania danego napoju. Program działa w przeglądarce internetowej i wykorzystuje języki programowania HTML, CSS i JavaScript.
 
