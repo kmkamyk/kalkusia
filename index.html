@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator proporcji kawy do napoju</title>
+  <style>
+    /* Style dla formularza */
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="number"], input[type="text"] {
+      width: 100px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 5px 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+  </style>
+  <script>
+    /* Funkcja obliczająca proporcje kawy do napoju */
+    function calculate() {
+      var water = parseFloat(document.getElementById("water").value);
+      var coffeeRatio = parseFloat(document.getElementById("coffeeRatio").value);
+      var coffee = water * coffeeRatio / 100;
+      document.getElementById("coffee").value = coffee.toFixed(1);
+    }
+
+    /* Funkcja ustawiająca wartość pola wyboru stosunku kawy do wody na podstawie klikniętego przycisku */
+    function setCoffeeRatio(ratio) {
+      document.getElementById("coffeeRatio").value = ratio;
+      calculate();
+    }
+
+    /* Funkcja ustawiająca wartość pola ilości wody na podstawie klikniętego przycisku */
+    function setWater(amount) {
+      document.getElementById("water").value = amount;
+      calculate();
+    }
+  </script>
+</head>
+<body>
+  <h1>Kalkulator proporcji kawy do wody przy metodach alternatywnych <br>(Areopress, Drip, Chemex)</h1>
+  <form>
+    <label for="water">Ilość wody (ml):</label>
+    <button type="button" onclick="setWater(100)">100 ml</button>
+    <button type="button" onclick="setWater(250)">250 ml</button>
+    <button type="button" onclick="setWater(300)">300 ml</button>
+    <button type="button" onclick="setWater(330)">330 ml</button>
+    <input type="number" id="water" name="water" min="1" max="10000" step="1" value="100" onchange="calculate()">
+    <br>
+    <label for="coffeeRatio">Stosunek kawy do wody:</label>
+    <button type="button" onclick="setCoffeeRatio(7)">7 na 100</button>
+    <button type="button" onclick="setCoffeeRatio(6)">6 na 100</button>
+    <input type="hidden" id="coffeeRatio" name="coffeeRatio" value="7" onchange="calculate()">
+    <br>
+    <label for="coffee">Ilość kawy (g):</label>
+    <input type="text" id="coffee" name="coffee" readonly>
+    <button type="button" onclick="calculate()">Oblicz</button>
+  </form>
+</body>
+</html>
