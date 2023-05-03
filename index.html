@@ -34,6 +34,23 @@
       var coffeeRatio = parseFloat(document.getElementById("coffeeRatio").value);
       var coffee = water * coffeeRatio / 100;
       document.getElementById("coffee").value = coffee.toFixed(1);
+
+      /* Zmiana wartości dla stalych w przepisie */
+			document.getElementById("waterRecipe").innerHTML = water.toFixed(0) + " g";
+			document.getElementById("coffeeRecipe").innerHTML = coffee.toFixed(1) + " g";
+
+      /* Zmiana ilosci wody dla przepisu przepisu */
+      var waterStep1 = 50;
+			var waterStep2 = 40 * water / 100;
+			var waterStep3 = 60 * water / 100;
+			var waterStep4 = 80 * water / 100 ;
+			var waterStep5 = 100 * water / 100;
+
+			document.getElementById("waterStep1").innerHTML = waterStep1.toFixed(0) + " g";
+			document.getElementById("waterStep2").innerHTML = waterStep2.toFixed(0) + " g";
+			document.getElementById("waterStep3").innerHTML = waterStep3.toFixed(0) + " g";
+			document.getElementById("waterStep4").innerHTML = waterStep4.toFixed(0) + " g";
+      document.getElementById("waterStep5").innerHTML = waterStep5.toFixed(0) + " g";
     }
 
     /* Funkcja ustawiająca wartość pola wyboru stosunku kawy do wody na podstawie klikniętego przycisku */
@@ -68,5 +85,23 @@
     <input type="text" id="coffee" name="coffee" readonly>
     <button type="button" onclick="calculate()">Oblicz</button>
   </form>
+	<h2>Przepis na V60 od Hoffmoanna</h2>
+	<p><span id="coffeeRecipe">15</span> g kawy mielonej</p>
+	<p><span id="waterRecipe">250</span> g miękkiej, przefiltrowanej wody, świeżo przegotowanej (do lżejszych pieczeni)</p>
+	<p>Zmielenie: średnio-drobne</p>
+  <ul>
+    <li>0m00s: Wlej <span id="waterStep1">50</span> wody</li>
+    <li>0m10s - 0m15s: Delikatnie zawiruj kawe</li>
+    <li>0m00s - 0m45s: Rozkwit kawy</li>
+    <li>0m45s - 1m00s: Wlej łącznie do <span id="waterStep2">100</span> (40% wody)</li>
+    <li>1m00s - 1m10s: Pauza</li>
+    <li>1m10s - 1m20s: Wlej łącznie do <span id="waterStep3">150</span> (60% wody)</li>
+    <li>1m20s - 1m30s: Pauza</li>
+    <li>1m30s - 1m40s: Wlej łącznie do <span id="waterStep4">200</span> (80% wody)</li>
+    <li>1m40s - 1m50s: Pauza</li>
+    <li>1m50s - 2m00s: Wlej łącznie do <span id="waterStep5">250</span> (100% wody)</li>
+    <li>2m00s - 2m05s: Delikatnie zawiruj kawe</li>
+    <li>Parzenie powinien zakończyć się około 3:00</li>
+  </ul>
 </body>
 </html>
