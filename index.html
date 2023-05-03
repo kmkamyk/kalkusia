@@ -4,28 +4,122 @@
   <meta charset="UTF-8">
   <title>Kalkulator proporcji kawy do napoju</title>
   <style>
-    /* Style dla formularza */
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
+/* style ogólne */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+}
+
+/* style nagłówka */
+
+header {
+    background-color: #437fd7;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+header h1 {
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+header img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* style sekcji głównej */
+
+main {
+    padding: 10px;
+}
+
+/* style formularza */
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+form label {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+form input {
+    font-size: 48px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+form button {
+    font-size: 48px;
+    padding: 15px 40px;
+    background-color: #438aed;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* style wyników */
+
+#results {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+#results h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* media queries dla urządzeń mobilnych */
+
+@media (max-width: 767px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 10px;
     }
-    input[type="number"], input[type="text"] {
-      width: 100px;
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      margin-bottom: 10px;
+
+    header h1 {
+        font-size: 20px;
+        margin: 10px 0;
     }
-    button {
-      padding: 5px 10px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      margin-right: 5px;
+
+    header img {
+        height: 30px;
+        margin: 10px 0;
     }
+
+    form label {
+        font-size: 16px;
+    }
+
+    form input {
+        font-size: 16px;
+    }
+
+    form button {
+        font-size: 16px;
+        padding: 5px;
+    }
+
+    #results h2 {
+        font-size: 20px;
+    }
+}
   </style>
   <script>
     /* Funkcja obliczająca proporcje kawy do napoju */
@@ -67,7 +161,8 @@
   </script>
 </head>
 <body>
-  <h1>Kalkulator proporcji kawy do wody przy metodach alternatywnych <br>(Aeropress, Drip, Chemex)</h1>
+  <h1>Kalkusia</h1>
+  <h2>Kalkulator proporcji kawy do wody przy metodach alternatywnych (Aeropress, Drip, Chemex)</h2>
   <form>
     <label for="water">Ilość wody (ml):</label>
     <button type="button" onclick="setWater(100)">100 ml</button>
@@ -83,12 +178,11 @@
     <br>
     <label for="coffee">Ilość kawy (g):</label>
     <input type="text" id="coffee" name="coffee" readonly>
-    <button type="button" onclick="calculate()">Oblicz</button>
   </form>
-	<h2>Przepis na V60 od Hoffmoanna</h2>
-	<p><span id="coffeeRecipe">15</span> g kawy mielonej</p>
-	<p><span id="waterRecipe">250</span> g miękkiej, przefiltrowanej wody, świeżo przegotowanej (do lżejszych pieczeni)</p>
+	<h2>Przepis V60</h2>
+	<p><span id="coffeeRecipe">15</span> kawy mielonej oraz <span id="waterRecipe">250</span> przefiltrowanej wody</p>
 	<p>Zmielenie: średnio-drobne</p>
+  <p>parzenie:</p>
   <ul>
     <li>0m00s: Wlej <span id="waterStep1">50</span> wody</li>
     <li>0m10s - 0m15s: Delikatnie zawiruj kawe</li>
