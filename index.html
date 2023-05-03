@@ -4,122 +4,120 @@
   <meta charset="UTF-8">
   <title>Kalkulator proporcji kawy do napoju</title>
   <style>
-/* style ogólne */
+    /* style ogólne */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-body {
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(to bottom, #ffffff, #e6e6e6);
-}
+    body {
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+    }
+    /* style nagłówka */
 
-/* style nagłówka */
-
-header {
-    background-color: #437fd7;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
-
-header h1 {
-    font-size: 24px;
-    margin-left: 10px;
-}
-
-header img {
-    height: 40px;
-    margin-right: 10px;
-}
-
-/* style sekcji głównej */
-
-main {
-    padding: 10px;
-}
-
-/* style formularza */
-
-form {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
-
-form label {
-    font-size: 18px;
-    margin-bottom: 5px;
-}
-
-form input {
-    font-size: 48px;
-    padding: 5px;
-    margin-bottom: 10px;
-}
-form button {
-    font-size: 48px;
-    padding: 15px 40px;
-    background-color: #438aed;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-}
-
-/* style wyników */
-
-#results {
-    font-size: 18px;
-    margin-top: 10px;
-}
-
-#results h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-/* media queries dla urządzeń mobilnych */
-
-@media (max-width: 767px) {
     header {
-        flex-direction: column;
+        background-color: #437fd7;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
         align-items: center;
-        padding: 20px 10px;
+        padding: 10px;
     }
 
     header h1 {
-        font-size: 20px;
-        margin: 10px 0;
+        font-size: 24px;
+        margin-left: 10px;
     }
 
     header img {
-        height: 30px;
-        margin: 10px 0;
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    /* style sekcji głównej */
+
+    main {
+        padding: 10px;
+    }
+
+    /* style formularza */
+
+    form {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
     }
 
     form label {
-        font-size: 16px;
+        font-size: 18px;
+        margin-bottom: 5px;
     }
 
     form input {
-        font-size: 16px;
+        font-size: 48px;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+    form button {
+        font-size: 48px;
+        padding: 15px 40px;
+        background-color: #438aed;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
     }
 
-    form button {
-        font-size: 16px;
-        padding: 5px;
+    /* style wyników */
+    #results {
+        font-size: 18px;
+        margin-top: 10px;
     }
 
     #results h2 {
-        font-size: 20px;
+        font-size: 24px;
+        margin-bottom: 10px;
     }
-}
+
+    /* media queries dla urządzeń mobilnych */
+
+    @media (max-width: 767px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 10px;
+      }
+
+      header h1 {
+          font-size: 20px;
+          margin: 10px 0;
+      }
+
+      header img {
+          height: 30px;
+          margin: 10px 0;
+      }
+
+      form label {
+          font-size: 16px;
+      }
+
+      form input {
+          font-size: 16px;
+      }
+
+      form button {
+          font-size: 16px;
+          padding: 5px;
+      }
+
+      #results h2 {
+          font-size: 20px;
+      }
+    }
   </style>
   <script>
     /* Funkcja obliczająca proporcje kawy do napoju */
@@ -130,20 +128,20 @@ form button {
       document.getElementById("coffee").value = coffee.toFixed(1);
 
       /* Zmiana wartości dla stalych w przepisie */
-			document.getElementById("waterRecipe").innerHTML = water.toFixed(0) + " g";
-			document.getElementById("coffeeRecipe").innerHTML = coffee.toFixed(1) + " g";
+      document.getElementById("waterRecipe").innerHTML = water.toFixed(0) + " g";
+      document.getElementById("coffeeRecipe").innerHTML = coffee.toFixed(1) + " g";
 
       /* Zmiana ilosci wody dla przepisu przepisu */
       var waterStep1 = 50;
-			var waterStep2 = 40 * water / 100;
-			var waterStep3 = 60 * water / 100;
-			var waterStep4 = 80 * water / 100 ;
-			var waterStep5 = 100 * water / 100;
+      var waterStep2 = 40 * water / 100;
+      var waterStep3 = 60 * water / 100;
+      var waterStep4 = 80 * water / 100 ;
+      var waterStep5 = 100 * water / 100;
 
-			document.getElementById("waterStep1").innerHTML = waterStep1.toFixed(0) + " g";
-			document.getElementById("waterStep2").innerHTML = waterStep2.toFixed(0) + " g";
-			document.getElementById("waterStep3").innerHTML = waterStep3.toFixed(0) + " g";
-			document.getElementById("waterStep4").innerHTML = waterStep4.toFixed(0) + " g";
+      document.getElementById("waterStep1").innerHTML = waterStep1.toFixed(0) + " g";
+      document.getElementById("waterStep2").innerHTML = waterStep2.toFixed(0) + " g";
+      document.getElementById("waterStep3").innerHTML = waterStep3.toFixed(0) + " g";
+      document.getElementById("waterStep4").innerHTML = waterStep4.toFixed(0) + " g";
       document.getElementById("waterStep5").innerHTML = waterStep5.toFixed(0) + " g";
     }
 
