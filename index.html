@@ -2,194 +2,138 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Kalkulator proporcji kawy do napoju</title>
-  <style>
-    /* style ogólne */
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strona Bootstrap</title>
 
-    body {
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(to bottom, #ffffff, #e6e6e6);
-    }
-    /* style nagłówka */
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    header {
-        background-color: #437fd7;
-        color: #fff;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-    }
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    header h1 {
-        font-size: 24px;
-        margin-left: 10px;
-    }
+  <!-- Bootstrap JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    header img {
-        height: 40px;
-        margin-right: 10px;
-    }
-
-    /* style sekcji głównej */
-
-    main {
-        padding: 10px;
-    }
-
-    /* style formularza */
-
-    form {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 10px;
-    }
-
-    form label {
-        font-size: 18px;
-        margin-bottom: 5px;
-    }
-
-    form input {
-        font-size: 48px;
-        padding: 5px;
-        margin-bottom: 10px;
-    }
-    form button {
-        font-size: 48px;
-        padding: 15px 40px;
-        background-color: #438aed;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        display: inline-block;
-    }
-
-    /* style wyników */
-    #results {
-        font-size: 18px;
-        margin-top: 10px;
-    }
-
-    #results h2 {
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-
-    /* media queries dla urządzeń mobilnych */
-
-    @media (max-width: 767px) {
-      header {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 10px;
-      }
-
-      header h1 {
-          font-size: 20px;
-          margin: 10px 0;
-      }
-
-      header img {
-          height: 30px;
-          margin: 10px 0;
-      }
-
-      form label {
-          font-size: 16px;
-      }
-
-      form input {
-          font-size: 16px;
-      }
-
-      form button {
-          font-size: 16px;
-          padding: 5px;
-      }
-
-      #results h2 {
-          font-size: 20px;
-      }
-    }
-  </style>
-  <script>
-    /* Funkcja obliczająca proporcje kawy do napoju */
-    function calculate() {
-      var water = parseFloat(document.getElementById("water").value);
-      var coffeeRatio = parseFloat(document.getElementById("coffeeRatio").value);
-      var coffee = water * coffeeRatio / 100;
-      document.getElementById("coffee").value = coffee.toFixed(1);
-
-      /* Zmiana wartości dla stalych w przepisie */
-      document.getElementById("waterRecipe").innerHTML = water.toFixed(0) + " g";
-      document.getElementById("coffeeRecipe").innerHTML = coffee.toFixed(1) + " g";
-
-      /* Zmiana ilosci wody dla przepisu przepisu */
-      var waterStep1 = 50;
-      var waterSteps = [waterStep1, 40, 60, 80, 100];
-      for (var i = 1; i <= waterSteps.length; i++) {
-        document.getElementById("waterStep" + i).innerHTML = (waterSteps[i-1] * water / 100).toFixed(0) + " g";
-      }
-    }
-
-    /* Funkcja ustawiająca wartość pola wyboru stosunku kawy do wody na podstawie klikniętego przycisku */
-    function setCoffeeRatio(ratio) {
-      document.getElementById("coffeeRatio").value = ratio;
-      calculate();
-    }
-
-    /* Funkcja ustawiająca wartość pola ilości wody na podstawie klikniętego przycisku */
-    function setWater(amount) {
-      document.getElementById("water").value = amount;
-      calculate();
-    }
-  </script>
 </head>
 <body>
-  <h1>Kalkusia</h1>
-  <h2>Kalkulator proporcji kawy do wody przy metodach alternatywnych (Aeropress, Drip, Chemex)</h2>
-  <form>
-    <label for="water">Ilość wody (ml):</label>
-    <button type="button" onclick="setWater(200)">200 ml</button>
-    <button type="button" onclick="setWater(250)">250 ml</button>
-    <button type="button" onclick="setWater(300)">300 ml</button>
-    <button type="button" onclick="setWater(330)">330 ml</button>
-    <button type="button" onclick="setWater(500)">500 ml</button>
 
-    <input type="number" id="water" name="water" min="1" max="10000" step="1" value="100" onchange="calculate()">
-    <br>
-    <label for="coffeeRatio">Stosunek kawy do wody:</label>
-    <button type="button" onclick="setCoffeeRatio(7)">7 na 100</button>
-    <button type="button" onclick="setCoffeeRatio(6)">6 na 100</button>
-    <input type="hidden" id="coffeeRatio" name="coffeeRatio" value="7" onchange="calculate()">
-    <br>
-    <label for="coffee">Ilość kawy (g):</label>
-    <input type="text" id="coffee" name="coffee" readonly>
-  </form>
-	<h2>Przepis V60</h2>
-	<p><span id="coffeeRecipe">15</span> kawy mielonej oraz <span id="waterRecipe">250</span> przefiltrowanej wody</p>
-	<p>Zmielenie: średnio-drobne</p>
-  <p>parzenie:</p>
-  <ul>
-    <li>0m00s: Wlej <span id="waterStep1">50</span> wody</li>
-    <li>0m10s - 0m15s: Delikatnie zawiruj kawe</li>
-    <li>0m00s - 0m45s: Rozkwit kawy</li>
-    <li>0m45s - 1m00s: Wlej łącznie do <span id="waterStep2">100</span> (40% wody)</li>
-    <li>1m00s - 1m10s: Pauza</li>
-    <li>1m10s - 1m20s: Wlej łącznie do <span id="waterStep3">150</span> (60% wody)</li>
-    <li>1m20s - 1m30s: Pauza</li>
-    <li>1m30s - 1m40s: Wlej łącznie do <span id="waterStep4">200</span> (80% wody)</li>
-    <li>1m40s - 1m50s: Pauza</li>
-    <li>1m50s - 2m00s: Wlej łącznie do <span id="waterStep5">250</span> (100% wody)</li>
-    <li>2m00s - 2m05s: Delikatnie zawiruj kawe</li>
-    <li>Parzenie powinien zakończyć się około 3:00</li>
-  </ul>
-</body>
-</html>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="#">Moja strona</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Strona główna</a></li>
+          <li><a href="#">O nas</a></li>
+          <li><a href="#">Kontakt</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Jumbotron -->
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Witaj na mojej stronie</h1>      
+      <p>Znajdziesz tu wiele ciekawych informacji na temat...</p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button">Dowiedz się więcej &raquo;</a></p>
+    </div>
+  </div>
+
+  <!-- Three Column Section -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-4">
+        <h2>Sekcja 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis justo quis elit aliquet, eget cursus enim lacinia. Nam convallis massa ac turpis lobortis, in facilisis felis convallis. Nunc elementum, nibh vel scelerisque aliquam, dolor ex rhoncus sapien, a vestibulum nulla urna nec odio.</p>        
+      </div>
+      <div class="col-sm-4">
+        <h2>Sekcja 2</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis justo quis elit aliquet, eget cursus enim lacinia. Nam convallis massa ac turpis lobortis, in facilisis felis convallis. Nunc elementum, nibh vel scelerisque aliquam, dolor ex rhoncus sapien, a vestibulum nulla urna nec odio.</p>        
+      </div>
+      <div class="col-sm-4">
+        <h2>Sekcja 3</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis justo quis elit aliquet, eget cursus enim lacinia. Nam conv
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Strona Bootstrap</title>
+          
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+          
+            <!-- jQuery -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          
+            <!-- Bootstrap JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+          
+          </head>
+          <body>
+          
+            <!-- Navigation Bar -->
+            <nav class="navbar navbar-inverse">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                  </button>
+                  <a class="navbar-brand" href="#">Moja strona</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Strona główna</a></li>
+                    <li><a href="#">O nas</a></li>
+                    <li><a href="#">Kontakt</a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          
+            <!-- Jumbotron -->
+            <div class="jumbotron">
+              <div class="container">
+                <h1>Witaj na mojej stronie</h1>      
+                <p>Znajdziesz tu wiele ciekawych informacji na temat...</p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">Dowiedz się więcej &raquo;</a></p>
+              </div>
+            </div>
+          
+            <!-- Three Column Section -->
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-4">
+                  <h2>Sekcja 1</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis justo quis elit aliquet, eget cursus enim lacinia. Nam convallis massa ac turpis lobortis, in facilisis felis convallis. Nunc elementum, nibh vel scelerisque aliquam, dolor ex rhoncus sapien, a vestibulum nulla urna nec odio.</p>        
+                </div>
+                <div class="col-sm-4">
+                  <h2>Sekcja 2</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis justo quis elit aliquet, eget cursus enim lacinia. Nam convallis massa ac turpis lobortis, in facilisis felis convallis. Nunc elementum, nibh vel scelerisque aliquam, dolor ex rhoncus sapien, a vestibulum nulla urna nec odio.</p>        
+                </div>
+                <div class="col-sm-4">
+                  <h2>Sekcja 3</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis justo quis elit aliquet, eget cursus enim lacinia. Nam conv
+                    allis massa ac turpis lobortis, in facilisis felis convallis. Nunc elementum, nibh vel scelerisque aliquam, dolor ex rhoncus sapien, a vestibulum nulla urna nec odio.</p>
+                  </div>
+                  </div>
+                    </div>
+                    <!-- Footer -->
+                    <footer class="footer">
+                      <div class="container">
+                        <p>&copy; 2023 Moja strona, Inc.</p>
+                      </div>
+                    </footer>
+                  </body>
+                  </html>
+                            
