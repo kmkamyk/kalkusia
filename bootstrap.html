@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kalkusia - Kalkulator proporcji kawy</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" integrity="sha512-xldqyfIMDW7oKjy5b5Q+8vhZoR5mKk/f9tD1+tV8/PPy1x2B/2OKjEi7V8PnZu+7VWGJYXjKHTWJ8v0xjM+xmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-GJQ7FglKnwYXMv7I+J/o4zV7kjyIaaN/9NcXZGnDZlp/ZRzlK/wYg1C6xqT6y/iTgiUfJNBvzznXfZI+UZC6FA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     /* Funkcja obliczająca proporcje kawy do napoju */
     function calculate() {
@@ -22,8 +23,8 @@
       /* Zmiana ilosci wody dla przepisu przepisu */
       var waterStep1 = 50;
       var waterSteps = [waterStep1, 40, 60, 80, 100];
-      for (var i = 1; i <= waterSteps.length; i++) {
-        document.getElementById("waterStep" + i).innerHTML = (waterSteps[i-1] * water / 100).toFixed(0) + " g";
+      for (var i = 2; i <= waterSteps.length; i++) {
+        document.getElementById("waterStep" + i).innerHTML = (waterSteps[i-1] * water / 100).toFixed(0) + "g";
       }
     }
 
@@ -39,79 +40,132 @@
       calculate();
     }
   </script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .row {
+        flex-direction: column;
+      }
+      .list-group-item {
+        padding: 2px 10px;
+        font-size: 16px;
+      }
+    }
+
+  </style>
 </head>
 <body>
-  <div class="container-fluid p-3 bg-light text-dark text-center">
-    <h1>Kalkusia</h1>
-    <p>Kalkulator proporcji kawy do wody przy metodach alternatywnych (Aeropress, Drip, Chemex)</p>
-    <p>
-      <a class="btn btn-dark" href="https://github.com/kmkamyk/kalkusia" role="button">Dowiedz się więcej &raquo;</a>
-    </p>
-  </div>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col p-4 bg-primary text-white">
-        <div class="d-flex justify-content-center align-items-center">
-          <form style="max-width: 500px;">
-            <div class="text-center mb-3">
-              <label for="water" class="form-label"><h5>Ilość wody (ml):</h5></label>
-              <br>
-                <div class="btn-group" role="group" aria-label="Ilość wody">
-                  <button type="button" class="btn btn-light btn-lg" onclick="setWater(200)">200 ml</button>
-                  <button type="button" class="btn btn-light btn-lg" onclick="setWater(250)">250 ml</button>
-                  <button type="button" class="btn btn-light btn-lg" onclick="setWater(300)">300 ml</button>
-                  <button type="button" class="btn btn-light btn-lg" onclick="setWater(330)">330 ml</button>
-                  <button type="button" class="btn btn-light btn-lg" onclick="setWater(500)">500 ml</button>
+  <div class="container-fluid h-100 d-flex flex-column">
+    <div class="row flex-fill" style="min-height:0">
+      <div class="col p-0 bg-light mh-100">
+        <div id="Kalkusia" class="col mh-100" style="height: 100%;">
+          <div class="col p-5 flex-column">
+            <div class="d-flex justify-content-center align-items-center">
+              <form>
+                <div class="text-center mb-3">           
+                  <div class="btn-group" role="group" aria-label="menu">
+                    <a class="btn btn-primary active" href="#Kalkusia">Początek</a>
+                    <a class="btn btn-primary" href="#Kalkulator">Kalkulator proporcji</a>
+                    <a class="btn btn-primary" href="#Przepisv60">Przepis na Drip</a>
+                  </div>
+                  <br>
+                  <br>
+                  <h1>Kalkusia</h1>
+                  <p>Kalkulator proporcji kawy do wody przy metodach alternatywnych (Aeropress, Drip, Chemex...)</p>
+                  <br>
+                  <p class="fw-lighter">
+                    Ta strona internetowa oferuje narzędzie, które pomaga w ustaleniu proporcji kawy do wody podczas parzenia metodą drip v60. Wprowadzając ilość kawy i wody, kalkulator automatycznie oblicza odpowiednie proporcje i wyświetla wynik. Ponadto, na stronie znajduje się przepis na parzenie kawy metodą drip v60, który dostosowuje ilość kawy na podstawie wyliczonych proporcji. Dzięki temu użytkownik może łatwo i precyzyjnie przygotować idealną kawę w domu.
+                  </p>
                 </div>
+              </form>
             </div>
-            <div class="text-center mb-3">
-              <input type="number" class="form-control form-control-lg" id="water" name="water" min="1" max="10000" step="1" value="100" onchange="calculate()">
-            </div>
-            <div class="text-center mb-3">
-              <label for="coffeeRatio" class="form-label"><h5>Stosunek kawy do wody:</h5></label>
-                <br>
-                <div class="btn-group" role="group" aria-label="Stosunek kawy do wody">
-                  <button type="button" class="btn btn-light btn-lg" onclick="setCoffeeRatio(7)">7 na 100</button>
-                  <button type="button" class="btn btn-light btn-lg" onclick="setCoffeeRatio(6)">6 na 100</button>
+          </div>
+        </div>
+        <div id="Kalkulator" class="col bg-primary mh-100" style="height: 100%;">
+          <div class="col p-5 text-white flex-column">
+            <div class="d-flex justify-content-center align-items-center">
+              <form>
+                <div class="text-center mb-3">
+                  <div class="btn-group" role="group" aria-label="menu">
+                    <a class="btn btn-light" href="#Kalkusia">Początek</a>
+                    <a class="btn btn-light active" href="#Kalkulator">Kalkulator proporcji</a>
+                    <a class="btn btn-light" href="#Przepisv60">Przepis na Drip</a>
+                  </div>
+                  <br>
+                  <br>
+                  <br>
+                  <label for="water" class="form-label"><h5>Ilość wody (ml):</h5></label>
+                  <br>
+                  <div class="btn-group" role="group" aria-label="Ilość wody">
+                    <button type="button" class="btn btn-light btn-lg" onclick="setWater(200)">200 ml</button>
+                    <button type="button" class="btn btn-light btn-lg" onclick="setWater(250)">250 ml</button>
+                    <button type="button" class="btn btn-light btn-lg" onclick="setWater(300)">300 ml</button>
+                    <button type="button" class="btn btn-light btn-lg" onclick="setWater(330)">330 ml</button>
+                  </div>
                 </div>
-              <input type="hidden" id="coffeeRatio" name="coffeeRatio" value="7" onchange="calculate()">
+                <div class="text-center mb-3">
+                  <input type="number" class="form-control form-control-lg" id="water" name="water" min="1" max="10000" step="1" value="100" onchange="calculate()">
+                </div>
+                <div class="text-center mb-3">
+                  <label for="coffeeRatio" class="form-label"><h5>Stosunek kawy do wody:</h5></label>
+                    <br>
+                    <div class="btn-group" role="group" aria-label="Stosunek kawy do wody">
+                      <button type="button" class="btn btn-light btn-lg" onclick="setCoffeeRatio(7)">7 na 100</button>
+                      <button type="button" class="btn btn-light btn-lg" onclick="setCoffeeRatio(6)">6 na 100</button>
+                      <button type="button" class="btn btn-light btn-lg" onclick="setCoffeeRatio(10)">10 na 100</button>
+                    </div>
+                  <input type="hidden" id="coffeeRatio" name="coffeeRatio" value="7" onchange="calculate()">
+                </div>
+                <div class="text-center mb-3">
+                  <label for="coffee" class="form-label"><h5>Ilość kawy (g):</h5></label>
+                  <input type="text" class="form-control form-control-lg" id="coffee" name="coffee" readonly>
+                </div>
+              </form>
+            </div>   
+          </div>
+        </div>
+        <div id="Przepisv60" class="col bg-primary mh-100" style="height: 100%;">
+          <div class="col p-5 text-white flex-column">
+            <div class="d-flex justify-content-center align-items-center">
+              <form>
+                <div class="text-center mb-3"> 
+                  <div class="btn-group" role="group" aria-label="menu">
+                    <a class="btn btn-light" href="#Kalkusia">Początek</a>
+                    <a class="btn btn-light" href="#Kalkulator">Kalkulator proporcji</a>
+                    <a class="btn btn-light active" href="#Przepisv60">Przepis na Drip</a>
+                  </div>
+                  <br>
+                  <br>
+                  <ul class="list-group">
+                    <li class="list-group-item active bg-dark" aria-current="true">
+                      Przygotuj <span id="coffeeRecipe">15 g</span> kawy mielonej oraz<span id="waterRecipe"> 250 g</span> przefiltrowanej wody
+                    </li>
+                    <li class="list-group-item"><span class="badge bg-primary badge-primary badge-pill">0:00s</span> Wlej <span id="waterStep1">50 g</span> wody</li>
+                    <li class="list-group-item"><span class="badge bg-primary badge-primary badge-pill">0:10s-0:15s</span> Delikatnie zawiruj kawe</li>
+                    <li class="list-group-item"><span class="badge bg-primary badge-primary badge-pill">0:00s-0:45s</span> Rozkwit kawy</li>
+                    <li class="list-group-item"><span class="badge bg-primary badge-primary badge-pill">0:45s-1:00s</span> Wlej łącznie do <span id="waterStep2">100g</span></li>
+                    <li class="list-group-item"><span class="badge bg-primary badge-primary badge-pill">1:00s-1:10s</span> Pauza</li>
+                    <li class="list-group-item"><span class="badge bg-primary badge-primary badge-pill">1:10s-1:20s</span> Wlej łącznie do <span id="waterStep3">150g</span></li>
+                    <li class="list-group-item"><span class="badge bg-primary badge-primary badge-pill">1:20s-1:30s</span> Pauza</li>
+                    <li class="list-group-item"><span class="badge bg-primary badge-primary badge-pill">1:30s-1:40s</span> Wlej łącznie do <span id="waterStep4">200g</span></li>
+                    <li class="list-group-item"><span class="badge bg-primary badge-primary badge-pill">1:40s-1:50s</span> Pauza</li>
+                    <li class="list-group-item"><span class="badge bg-primary badge-primary badge-pill">1:50s-2:00s</span> Wlej łącznie do <span id="waterStep5">250g</span></li>
+                    <li class="list-group-item"><span class="badge bg-primary badge-primary badge-pill">2:00s-2:05s</span> Delikatnie zawiruj kawe</li>
+                    <li class="list-group-item">Parzenie powinien zakończyć się około <span class="badge bg-primary badge-primary badge-pill">3:00</span></li>
+                  </ul>
+                </div>
+              </form>
             </div>
-            <div class="text-center mb-3">
-              <label for="coffee" class="form-label"><h5>Ilość kawy (g):</h5></label>
-              <input type="text" class="form-control form-control-lg" id="coffee" name="coffee" readonly>
-            </div>
-          </form>
-        </div>   
-      </div>
-      <div class="col p-4 bg-primary text-white">
-        <ul class="list-group">
-          <li class="list-group-item active bg-dark text-center" aria-current="true">
-            <h5>Przepis V60</h5>
-            <p>
-              <span id="coffeeRecipe">15</span> kawy mielonej oraz<span id="waterRecipe"> 250</span> przefiltrowanej wody
-            </p>
-          </li>
-          <li class="list-group-item">0m00s: Wlej <span id="waterStep1">50 g</span> wody</li>
-          <li class="list-group-item">0m10s - 0m15s: Delikatnie zawiruj kawe</li>
-          <li class="list-group-item">0m00s - 0m45s: Rozkwit kawy</li>
-          <li class="list-group-item">0m45s - 1m00s: Wlej łącznie do <span id="waterStep2">100</span> (40% wody)</li>
-          <li class="list-group-item">1m00s - 1m10s: Pauza</li>
-          <li class="list-group-item">1m10s - 1m20s: Wlej łącznie do <span id="waterStep3">150</span> (60% wody)</li>
-          <li class="list-group-item">1m20s - 1m30s: Pauza</li>
-          <li class="list-group-item">1m30s - 1m40s: Wlej łącznie do <span id="waterStep4">200</span> (80% wody)</li>
-          <li class="list-group-item">1m40s - 1m50s: Pauza</li>
-          <li class="list-group-item">1m50s - 2m00s: Wlej łącznie do <span id="waterStep5">250</span> (100% wody)</li>
-          <li class="list-group-item">2m00s - 2m05s: Delikatnie zawiruj kawe</li>
-          <li class="list-group-item">Parzenie powinien zakończyć się około 3:00</li>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <!-- Footer -->
-  <footer class="footer bg-dark">
-    <div class="container">
-      <p class="text-light">&copy; 2023 - Kamil Pytliński</p>
-    </div>
+  <footer class="bg-primary fixed-bottom">
+    <p style="font-size: 12px; text-align: center; margin:auto;">© 2023 Kalkusia - Kalkulator proporcji kawy<a href="https://github.com/kmkamyk/kalkusia" target="_blank"> - wiecej informacji</a></p>
   </footer>
 </body>
 </html>
